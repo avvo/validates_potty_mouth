@@ -10,7 +10,7 @@ class PottyMouthValidator < ActiveModel::EachValidator
   end
 
   def banned?(value)
-    text = text.gsub(/[\W\d]/, ' ') # get rid of non-letters
+    text = value.gsub(/[\W\d]/, ' ') # get rid of non-letters
     words = text.split.to_set
     words.any?{|word| banned_word?(word)}
   end
@@ -20,7 +20,7 @@ class PottyMouthValidator < ActiveModel::EachValidator
   end
 
   def banned_word_list
-    self.class.banned_word_lists(options.fetch(:list, :default))
+    self.class.banned_word_lists[options.fetch(:list, :default)]
   end
 
   class << self

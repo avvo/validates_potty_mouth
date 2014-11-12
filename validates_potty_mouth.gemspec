@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ValidatesPottyMouth::VERSION
   spec.authors       = ["Jeff Ching"]
   spec.email         = ["ching.jeff@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "Validate against blacklist of words"
+  spec.description   = "Validate against blacklist of words"
   spec.homepage      = ""
   spec.license       = "MIT"
 
