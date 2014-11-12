@@ -36,7 +36,7 @@ end
 
 ## Configuration
 
-You can set the message and threshold as configuration for the validator. The default threshold is 0.5 (half of the characters).
+You can set the word list message as configuration for the validator. The default list is named `:default`.
 
     validates :foo, potty_mouth: {list: :mylist, message: 'cannot be so shouty.'}
 
