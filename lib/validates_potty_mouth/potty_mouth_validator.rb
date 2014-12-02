@@ -1,3 +1,5 @@
+require 'stemmer'
+
 # this is not namespaced so that we can do
 #   validates :body, potty_mouth: true
 class PottyMouthValidator < ActiveModel::EachValidator
@@ -16,7 +18,9 @@ class PottyMouthValidator < ActiveModel::EachValidator
   end
 
   def banned_word?(word)
-    banned_word_list.include?(word)
+    down_word = word.downcase
+    banned_word_list.include?(down_word) ||
+      banned_word_list.include?(down_word.stem)
   end
 
   def banned_word_list
@@ -29,7 +33,7 @@ class PottyMouthValidator < ActiveModel::EachValidator
     end
 
     def add_word_list(type, path)
-      banned_word_lists[type.to_sym] = File.read(path).split("\n").to_set
+      banned_word_lists[type.to_sym] = File.read(path).split("\n").map{|word| word.chomp.downcase}.to_set
     end
   end
 end
