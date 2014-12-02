@@ -35,6 +35,16 @@ class ModelTest < MiniTest::Unit::TestCase
     assert m.errors[:body].present?
   end
 
+  def test_capitalization
+    m = TestModel.new
+    m.subject = "Fuck that"
+    m.body = "what the fuck is this?"
+    assert !m.valid?
+
+    assert m.errors[:subject].present?
+    assert m.errors[:body].present?
+  end
+
   def test_custom_list
     m = CustomList.new
     m.subject = "what the fuck?"
