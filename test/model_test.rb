@@ -55,4 +55,12 @@ class ModelTest < MiniTest::Unit::TestCase
     assert m.errors[:body].empty?
   end
 
+  def test_stemming
+    m = TestModel.new
+    m.subject = "what about word stemming?  can I say fucker or fucking or fucked?"
+    assert !m.valid?
+
+    assert m.errors[:subject].present?
+  end
+
 end
